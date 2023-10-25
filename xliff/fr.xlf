@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<file target-language="fr" source-language="id" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="sa7f5a39927597d86">
+  <source>Sarjana S1 Sistem Informasi di Institut Teknologi Swadharma dan
+              Bisnis</source>
+  <target>Master en informatique à l'Institut de technologie Swadharma et affaires</target>
+</trans-unit>
+<trans-unit id="s749c72374d54863f">
+  <source>Tutup</source>
+  <target>Fermer</target>
+</trans-unit>
+<trans-unit id="safd31de3d51d6e25">
+  <source>Batal</source>
+  <target>Annuler</target>
+</trans-unit>
+<trans-unit id="s98abbfbf47429739">
+  <source>Simpan Perubahan</source>
+  <target>Enregistrer les modifications</target>
+</trans-unit>
+<trans-unit id="sdecb7d9e86926488">
+  <source>Anda yakin ingin menghapus cerita ini</source>
+  <target>Êtes-vous sûr de vouloir supprimer cette histoire</target>
+</trans-unit>
+<trans-unit id="s746057cfbeef6cfe">
+  <source>Hapus</source>
+  <target>Supprimer</target>
+</trans-unit>
+<trans-unit id="sf9a862bfd829397e">
+  <source>Dasbor</source>
+  <target>Tableau de bord</target>
+</trans-unit>
+<trans-unit id="s1d61c7a71953905d">
+  <source>Buat Cerita</source>
+  <target>Créer une histoire</target>
+</trans-unit>
+<trans-unit id="s45dab30b4d2d3c14">
+  <source>Masuk</source>
+  <target>Connexion</target>
+</trans-unit>
+<trans-unit id="sdc8176e3439d2dbf">
+  <source>Copyright &amp;copy; 2023 by Ikhsan Fadhillah</source>
+  <target>Droits d'auteur &amp;copy; 2023 par Ikhsan Fadhillah</target>
+</trans-unit>
+<trans-unit id="sc4f0072b3fd19262">
+  <source>segera hadir untuk halaman login</source>
+  <target>bientôt pour la page de connexion</target>
+</trans-unit>
+</body>
+</file>
+</xliff>

@@ -1,0 +1,66 @@
+$primary-fonts: 'Arial', sans-serif;
+
+$primary-border-radius: 5px;
+$secondary-border-radius: 10px;
+
+$button-transitionanim-time: 0.25s;
+$button-transitionanim-style: linear;
+$floating-transitionanim-time: 6px;
+
+$padding-x: 0.8rem;
+$padding-y: 0.25rem;
+
+$border-radius: 5px;
+$border-radius-sm: 3px;
+$border-radius-lg: 2px;
+
+$bg-primary-color: #f73f52;
+$bg-secondary-color: #ffea85;
+$primary-color-text: #f6f6f6;
+$secondary-color-text: #7986c7;
+
+// Variables
+$primary-color: #f73f52;
+$secondary-color: #7986c7;
+$shadow-color: #f6f6f6;
+$shadow-x: 2px;
+$shadow-y: 2px;
+$shadow-blur: 4px;
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease;
+$transition-delay: 0s;
+
+@mixin button-transition {
+  transition: $transition-property $button-transitionanim-time $button-transitionanim-style;
+}
+
+@mixin show {
+  background-color: $secondary-color-text !important;
+  color: $bg-secondary-color;
+}
+
+@mixin floating-transition {
+  transition: $transition-property $floating-transitionanim-time;
+}
+
+@mixin padding($x: $padding-x, $y: $padding-y) {
+  padding: $y $x;
+}
+
+@mixin border-radius($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+@mixin box-shadow($x: $shadow-x, $y: $shadow-y, $blur: $shadow-blur, $color: $secondary-color) {
+  box-shadow: $x $y $blur $color;
+}
+
+@mixin color-transition(
+  $property: $transition-property,
+  $duration: $transition-duration,
+  $timing: $transition-timing,
+  $delay: $transition-delay
+) {
+  transition: $property $duration $timing $delay;
+}

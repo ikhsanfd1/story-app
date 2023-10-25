@@ -1,0 +1,41 @@
+$breakpoints: (
+  'xs': 350px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px,
+);
+
+$primary-fonts: 'Arial', sans-serif;
+
+$primary-border-radius: 5px;
+$secondary-border-radius: 10px;
+
+$button-transitionanim-time: 0.25s;
+$button-transitionanim-style: linear;
+$floating-transitionanim-time: 6px;
+
+$padding-x: 0.8rem;
+$padding-y: 0.25rem;
+
+$border-radius: 5px;
+$border-radius-sm: 3px;
+$border-radius-lg: 2px;
+
+$bg-primary-color: #f73f52;
+$bg-secondary-color: #ffea85;
+$primary-color-text: #f6f6f6;
+$secondary-color-text: #7986c7;
+
+// Variables
+$primary-color: #f73f52;
+$secondary-color: #7986c7;
+$shadow-color: #f6f6f6;
+$shadow-x: 2px;
+$shadow-y: 2px;
+$shadow-blur: 4px;
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease;
+$transition-delay: 0s;

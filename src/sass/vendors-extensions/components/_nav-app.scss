@@ -1,0 +1,9 @@
+nav-app {
+  position: fixed;
+  inset-inline: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: 0.35s ease-in-out;
+  z-index: 9999;
+}

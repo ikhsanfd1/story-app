@@ -1,0 +1,307 @@
+// Using built-in modules
+@use 'sass:map';
+
+// Custom modules
+@use '../vendors-extensions/abstracts/variables' as var;
+@use '../vendors-extensions/abstracts/mixins' as mix;
+@use '../vendors-extensions/components/colors' as color;
+@use '../vendors-extensions/components/nav-app' as nav;
+@use '../vendors-extensions/partials/forms' as form;
+
+//
+// Functions Bootstrap
+//
+@import '~bootstrap/scss/functions';
+
+//
+// Variables Bootstrap
+//
+@import '~bootstrap/scss/variables';
+
+// Menerapkan/override variables Bootstrap apa pun di sini
+$theme-colors: map.deep-merge($theme-colors, color.$theme-colors);
+
+// Buttons
+
+$btn-padding-x: var.$padding-x;
+$btn-padding-y: var.$padding-y;
+$btn-border-radius: var.$border-radius;
+$btn-border-radius-sm: var.$border-radius-sm;
+$btn-border-radius-lg: var.$border-radius-lg;
+
+//
+// Konfigurasi Bootstrap
+//
+@import '~bootstrap/scss/maps';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/reboot';
+
+//
+// Layouts dan components
+//
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/containers';
+@import '~bootstrap/scss/grid';
+
+@import '~bootstrap/scss/helpers';
+
+// Komponen-Komponen
+@import '~bootstrap/scss/tables';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/transitions';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar'; // Requires nav
+@import '~bootstrap/scss/card';
+@import '~bootstrap/scss/close';
+@import '~bootstrap/scss/modal'; //Requires transtions
+@import '~bootstrap/scss/offcanvas';
+
+//
+// Utilities API untuk menghasilkan utility classes
+//
+@import '~bootstrap/scss/utilities/api';
+
+//
+// Tambahkan custom code di sini
+//
+
+.show {
+  @include mix.show;
+  @include mix.color-transition;
+}
+
+// Button
+.btn-primary {
+  background-color: var.$bg-primary-color;
+  color: var.$primary-color-text;
+  @include mix.button-transition;
+  @include mix.box-shadow;
+  &:hover {
+    background-color: var.$secondary-color-text;
+    color: var.$bg-secondary-color;
+  }
+}
+
+.btn-secondary {
+  background-color: var.$secondary-color-text;
+  color: var.$bg-secondary-color;
+
+  @include mix.button-transition;
+  @include mix.box-shadow;
+  &:hover {
+    background-color: var.$bg-primary-color;
+    color: var.$primary-color-text;
+  }
+}
+
+.btn-c {
+  background-color: var.$bg-primary-color;
+  color: var.$primary-color-text;
+  @include mix.color-transition;
+  &:hover {
+    background-color: var.$secondary-color-text;
+  }
+}
+
+// Card
+.card {
+  background-color: var.$primary-color-text;
+  @include mix.box-shadow;
+
+  .card img {
+    transition: var.$transition-duration ease-in-out;
+  }
+}
+
+// Navbar
+nav-app {
+  background-color: var.$bg-primary-color;
+
+  &.scrolled {
+    background-color: var.$bg-primary-color;
+    @include mix.box-shadow;
+  }
+
+  nav-link {
+    @include mix.color-transition;
+    &:hover {
+      background-color: var.$secondary-color-text;
+    }
+  }
+}
+
+// Form
+.form-validation {
+  .form-group {
+    position: relative;
+    input,
+    textarea {
+      border: 2px solid var.$bg-primary-color;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var.$secondary-color-text;
+      @include mix.box-shadow;
+    }
+
+    input.form-control.is-invalid {
+      border-color: var.$bg-primary-color;
+    }
+
+    .invalid-feedback {
+      color: var.$bg-primary-color;
+    }
+  }
+}
+
+// Grid
+.grid-example {
+  .row {
+    .col-12 {
+      background-color: var.$bg-primary-color;
+      color: var.$primary-color-text;
+      padding: var.$padding-y var.$padding-x;
+      @include mix.box-shadow;
+    }
+  }
+}
+
+// Offcanvas custom
+off-canvas-custom {
+  position: fixed;
+  top: 90px;
+  right: 0;
+  z-index: 1;
+}
+
+// Modal
+.modal-dialog.modal-lg.text-purple.py-5 {
+  .modal-content.bg-yellow {
+    form.row.g-2#editRecordForm.novalidate {
+      .modal-header {
+        h5.modal-title#editModalLabel {
+          color: var.$bg-primary-color;
+        }
+
+        button.btn-close {
+          font-size: 1.5rem;
+          background-color: var.$secondary-color-text;
+          border: none;
+          padding: 0;
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: var.$bg-primary-color;
+
+          &:hover {
+            color: var.$primary-color-text;
+          }
+        }
+      }
+
+      .modal-body {
+        .container-fluid {
+          .row {
+            .col-6.col-sm-12 {
+              label.form-label {
+                font-size: 1rem;
+                font-weight: bold;
+                color: var.$bg-primary-color;
+              }
+
+              input-with-validation#inputNamaEdit[type='text'] {
+                input#validasiNama[type='text'] {
+                  padding: var.$padding-y var.$padding-x;
+                  border: 1px solid var.$bg-primary-color;
+                  border-radius: var.$primary-border-radius;
+
+                  &:focus {
+                    border-color: var.$primary-color-text;
+                    box-shadow: 0 0 3px var.$primary-color-text;
+                  }
+                }
+              }
+
+              label.form-label[for='validasiPhotoUrl'] {
+                font-size: 1rem;
+                font-weight: bold;
+                color: var.$bg-primary-color;
+              }
+
+              lihat-image-input#inputImageEdit {
+                input#validasiPhotoUrl[type='text'] {
+                  border: 1px solid var.$bg-primary-color;
+                  border-radius: var.$primary-border-radius;
+
+                  &:focus {
+                    border-color: var.$primary-color-text;
+                    box-shadow: 0 0 3px var.$primary-color-text;
+                  }
+                }
+              }
+
+              label.form-label[for='validasiDeskripsi'] {
+                font-size: 1rem;
+                font-weight: bold;
+                color: var.$bg-primary-color;
+              }
+
+              validasi-text-area#validasiDeskripsi {
+                textarea {
+                  padding: var.$padding-y var.$padding-x;
+                  border: 1px solid var.$bg-primary-color;
+                  border-radius: var.$primary-border-radius;
+
+                  &:focus {
+                    border-color: var.$primary-color-text;
+                    box-shadow: 0 0 3px var.$primary-color-text;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .modal-footer {
+        button.btn-secondary.btn-modal {
+          padding: var.$padding-y var.$padding-x;
+          border-radius: var.$secondary-border-radius;
+          background-color: var.$primary-color-text;
+          color: var.$bg-primary-color;
+
+          &:hover {
+            background-color: var.$bg-primary-color;
+            color: var.$primary-color-text;
+          }
+        }
+
+        button.btn.btn-primary#simpanPerubahan {
+          padding: var.$padding-y var.$padding-x;
+          border-radius: var.$secondary-border-radius;
+          background-color: var.$bg-primary-color;
+          color: var.$primary-color-text;
+          @include mix.button-transition;
+
+          &:hover {
+            background-color: var.$primary-color-text;
+            color: var.$bg-primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Breakpoints
+@media screen and (max-width: map.get(var.$breakpoints, 'sm')) {
+  .modal-body.edit-modal {
+    width: 100%;
+  }
+}

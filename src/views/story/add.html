@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title><%= htmlWebpackPlugin.options.title %> | Story App</title>
+  </head>
+  <body>
+    <header>
+      <nav-app brandName="<%= brandName %>"></nav-app>
+    </header>
+
+    <main>
+      <div class="main-content bg-yellow">
+        <div class="container py-5 text-purple">
+          <h1 class="mb-3 py-5">Tambah Story</h1>
+          <form class="row g-3 form-validation" id="addRecordForm" novalidate>
+            <div class="col-12 col-md-12">
+              <label for="validasiPhotoUrl" class="form-label">Upload Gambar</label>
+              <lihat-image-input
+                inputId="validasiPhotoUrl"
+                invalidFeedbackMessage="Wajib diisi, Gambar tidak boleh kosong"
+                validFeedbackMessage="Gambar cocok"
+                required
+              ></lihat-image-input>
+            </div>
+
+            <div class="col-12 col-md-12">
+              <label for="validasiDeskripsi" class="form-label">Deskripsi</label>
+              <validasi-text-area
+                inputId="validasiDeskripsi"
+                invalidFeedbackMessage="Wajib diisi, Deskripsi tidak boleh kosong"
+                validFeedbackMessage="Mantab"
+                required
+              ></validasi-text-area>
+            </div>
+
+            <div class="col-12 text-end">
+              <button class="btn btn-red text-white btn-c" type="submit">Submit</button>
+            </div>
+            <div class="alert alert-success d-none text-success" id="successAlert" role="alert">
+              <i class="bi bi-check-circle-fill"> Story berhasil ditambahkan!</i>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="main-footer bg-purple grid-example">
+        <div class="container px-3 py-4">
+          <footer-app></footer-app>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
