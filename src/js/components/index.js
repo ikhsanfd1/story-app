@@ -12,7 +12,6 @@ import './NavLink';
 import './NavLinkAuth';
 
 import './FooterApp';
-import './ComingSoon';
 
 import './form/ValidasiTextArea';
 import './form/LihatImageInput';

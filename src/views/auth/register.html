@@ -15,15 +15,27 @@
         <div class="row justify-content-center py-5">
           <article class="col-md-6">
             <div class="card text-purple">
-              <header class="card-header text-center">Login</header>
+              <header class="card-header text-center">Registrasi</header>
               <div class="card-body">
                 <form class="form-validation" id="loginRecordForm">
                   <div class="mb-3">
-                    <label for="validasiUsername" class="form-label">Username</label>
+                    <label for="validasiNama" class="form-label">Nama</label>
                     <input-with-validation
-                      id="validasiUsername"
+                      id="validasiNama"
                       type="text"
-                      inputId="validasiUsername"
+                      inputId="validasiNama"
+                      invalidFeedbackMessage="Wajib diisi, tidak boleh kosong"
+                      required
+                    >
+                    </input-with-validation>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="validasiEmail" class="form-label">Email</label>
+                    <input-with-validation
+                      id="validasiEmail"
+                      type="email"
+                      inputId="validasiEmail"
                       invalidFeedbackMessage="Wajib diisi, tidak boleh kosong"
                       required
                     >
@@ -40,7 +52,9 @@
                     >
                     </input-with-validation>
                   </div>
-                  <button type="submit" class="btn btn-red text-white btn-c">Login</button>
+                  <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-red text-white btn-c">Register</button>
+                  </div>
                 </form>
 
                 <div class="mt-4 text-center">
@@ -48,7 +62,6 @@
                 </div>
               </div>
             </div>
-            <coming-soon></coming-soon>
           </article>
         </div>
       </section>
