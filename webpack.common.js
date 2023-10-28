@@ -21,7 +21,7 @@ const htmlWebpackPluginConfig = {
         </li>
         
         <li class="nav-item" id="loginMenu">
-          <a class="nav-link" href="/story/login.html">Log In</a>
+          <a class="nav-link" href="/auth/login.html">Log In</a>
         </li>
 
         <li class="nav-item dropdown d-none" id="userLoggedMenu">
@@ -96,8 +96,8 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       title: 'Login',
-      filename: 'story/login.html',
-      template: path.resolve(__dirname, 'src/views/story/login.html'),
+      filename: 'auth/login.html',
+      template: path.resolve(__dirname, 'src/views/auth/login.html'),
       ...htmlWebpackPluginConfig,
     }),
 
