@@ -2,23 +2,25 @@ import { html, nothing } from 'lit';
 import LitWithoutShadowDom from '../base/LitWithoutShadowDom';
 
 class InputWithValidation extends LitWithoutShadowDom {
-  static properties = {
-    type: { type: String, reflect: true },
-    value: { type: String, reflect: true },
-    inputId: { type: String, reflect: true },
-
-    validFeedbackMessage: { type: String, reflect: true },
-    invalidFeedbackMessage: { type: String, reflect: true },
-
-    required: { type: Boolean, reflect: true },
-  };
-
   constructor() {
     super();
     this._checkAvailabilityProperty();
 
     this.type = 'text';
     this.required = false;
+  }
+
+  static get properties() {
+    return {
+      type: { type: String, reflect: true },
+      value: { type: String, reflect: true },
+      inputId: { type: String, reflect: true },
+
+      validFeedbackMessage: { type: String, reflect: true },
+      invalidFeedbackMessage: { type: String, reflect: true },
+
+      required: { type: Boolean, reflect: true },
+    };
   }
 
   _checkAvailabilityProperty() {

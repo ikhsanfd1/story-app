@@ -2,13 +2,15 @@ import { html } from 'lit';
 import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 
 class NavApp extends LitWithoutShadowDom {
-  static properties = {
-    brandName: { type: String, reflect: true },
-  };
-
   constructor() {
     super();
     this._checkAvailabilityProperty();
+  }
+
+  static get properties() {
+    return {
+      brandName: { type: String, reflect: true },
+    };
   }
 
   _checkAvailabilityProperty() {
@@ -31,7 +33,7 @@ class NavApp extends LitWithoutShadowDom {
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <nav-links class="ms-auto mb-2 mb-md-0">
+                    <nav-links class="ms-auto mb-2 mb-md-0 mx-5">
                 </div>
             </div>
       </nav>

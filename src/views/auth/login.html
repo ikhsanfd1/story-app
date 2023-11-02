@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title><%= htmlWebpackPlugin.options.title %> | Story App</title>
+  </head>
+  <body>
+    <header>
+      <nav-app brandName="<%= brandName %>"></nav-app>
+    </header>
+
+    <main class="bg-yellow">
+      <section class="container pt-5">
+        <div class="row justify-content-center py-5">
+          <article class="col-md-6">
+            <div class="card text-purple">
+              <header class="card-header text-center">Login</header>
+              <div class="card-body">
+                <form class="form-validation" id="loginForm" novalidate>
+                  <div class="mb-3">
+                    <label for="validasiEmail" class="form-label">Email</label>
+                    <input-with-validation
+                      id="validasiEmail"
+                      type="email"
+                      inputId="validasiEmail"
+                      invalidFeedbackMessage="Email tidak boleh kosong"
+                      required
+                    >
+                    </input-with-validation>
+                  </div>
+                  <div class="mb-3">
+                    <label for="validasiPassword" class="form-label">Password</label>
+
+                    <input-with-validation
+                      id="validasiPassword"
+                      type="password"
+                      inputId="validasiPassword"
+                      invalidFeedbackMessage="Password tidak boleh kosong"
+                      required
+                    >
+                    </input-with-validation>
+                  </div>
+                  <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-red text-white btn-c">Login</button>
+                  </div>
+                </form>
+
+                <p id="errorMessage"></p>
+                <p id="successMessage"></p>
+
+                <div class="mt-4 text-center">
+                  <a href="/auth/lupaakun.html">Lupa akun?</a> atau
+                </div>
+
+                <div class="mt-4 text-center">
+                  Belum punya akun? <a href="/auth/register.html">Daftar</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="main-footer bg-purple">
+        <div class="container px-3 py-4">
+          <footer-app></footer-app>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

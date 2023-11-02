@@ -1,30 +1,39 @@
+import CheckUserAuth from './auth/check-user-auth';
+import Stories from '../network/stories';
+
 const Dashboard = {
   async init() {
+    this._showSpinnerAndcardPlaceholder();
+
+    CheckUserAuth.checkLoginState();
+
     await this._initialData();
     this._initialListener();
   },
 
   async _initialData() {
-    const fetchRecords = await fetch('/data/DATA.json');
-    const responseRecords = await fetchRecords.json();
-    this._userListStory = responseRecords.listStory;
+    try {
+      const response = await Stories.getAll();
+      const responseRecords = response.data.listStory;
 
-    const dataSimpanStoryJSON = localStorage.getItem('dataSimpanStory');
-    if (dataSimpanStoryJSON) {
-      const dataSimpanStory = JSON.parse(dataSimpanStoryJSON);
+      this._userListStory = responseRecords;
 
-      if (Array.isArray(dataSimpanStory)) {
-        this._userListStory = dataSimpanStory.concat(this._userListStory);
-      }
+      this._userListStory.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return dateB - dateA;
+      });
+
+      setTimeout(() => {
+        this._hideSpinnerAndcardPlaceholder();
+      }, 3000);
+
+      this._populateListStoryRecordToCard(this._userListStory);
+    } catch (error) {
+      console.error(error);
+
+      this._hideSpinnerAndcardPlaceholder();
     }
-
-    this._userListStory.sort((a, b) => {
-      const dateA = new Date(a.createdAt);
-      const dateB = new Date(b.createdAt);
-      return dateB - dateA;
-    });
-
-    this._populateListStoryRecordToCard(this._userListStory);
   },
 
   _initialListener() {
@@ -68,8 +77,6 @@ const Dashboard = {
             createdAt: new Date(),
           };
           console.log(editedRecord);
-
-          this._simpanPerubahanDataDariLocalStorage(editedRecord);
         }
         editModal.classList.remove('show');
         editModal.style.display = 'none';
@@ -78,6 +85,11 @@ const Dashboard = {
         if (modalBackdrop) {
           modalBackdrop.remove();
         }
+        const successAlert = document.querySelector('#successEditAlert');
+        successAlert.classList.remove('d-none');
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
       });
     });
 
@@ -92,7 +104,7 @@ const Dashboard = {
       const recordId = hapusStory.getAttribute('data-record-id');
       const hapusStoryAnchor = deleteModal.querySelector('#hapusStory');
       hapusStoryAnchor.addEventListener('click', () => {
-        this._hapusDataDariLocalStorage(recordId);
+        this._hapusDataDariList(recordId);
         deleteModal.classList.remove('show');
         deleteModal.style.display = 'none';
         document.body.classList.remove('modal-open');
@@ -184,49 +196,20 @@ const Dashboard = {
           description: descEditRecord.value,
           createdAt: new Date(),
         };
-
-        if (this._isValidEdit(listStoryRecord, editedRecord)) {
-          this._simpanPerubahanDataDariLocalStorage(editedRecord);
-        } else {
-          alert('Perubahan tidak valid. ...');
-        }
+        console.log(editedRecord);
       }
 
-      editModal.classList.remove('show');
-      editModal.style.display = 'none';
+      const editModal = document.getElementById('editModal');
+      if (editModal) {
+        editModal.classList.remove('show');
+        editModal.style.display = 'none';
+      }
       document.body.classList.remove('modal-open');
       const modalBackdrop = document.querySelector('.modal-backdrop');
       if (modalBackdrop) {
         modalBackdrop.remove();
       }
-      const successEditAlert = document.querySelector('#successEditAlert');
-      successEditAlert.classList.remove('d-none');
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 2000);
     });
-  },
-
-  _isValidEdit(existingRecord, editedRecord) {
-    const errors = [];
-
-    if (!editedRecord.name) {
-      errors.push('Nama harus diisi.');
-    }
-
-    if (!editedRecord.description) {
-      errors.push('Deskripsi harus diisi.');
-    }
-
-    if (editedRecord.photoUrl !== existingRecord.photoUrl) {
-      errors.push('Anda tidak dapat mengubah gambar saat mengedit.');
-    }
-
-    if (errors.length > 0) {
-      return { isValid: false, errors };
-    }
-
-    return { isValid: true };
   },
 
   _handleEditModalCancel() {
@@ -254,7 +237,7 @@ const Dashboard = {
     <div class="card mb-3 bg-red text-white">
       <img src="${listStoryRecord.photoUrl}" class="card-img-top" alt="${
         listStoryRecord.name
-      }" id="imgCard">
+      }" id="imgCard" style="width: 100%; height: 200px;">
       <div class="card-body col-md-12">
         <h5 class="card-title" id="titleCard">${listStoryRecord.name}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary" id="dateCard">${this._formatDate(
@@ -273,7 +256,7 @@ const Dashboard = {
   },
 
   _tombolEdit(recordId) {
-    if (this._dataAdaDiPenyimpananLokal(recordId)) {
+    if (this._dataAdaDiList(recordId)) {
       return `
       <a href="#" class="card-link text-decoration-none edit-story text-white btn-c" data-bs-toggle="modal" data-bs-target="#editModal" data-record-id="${recordId}">Edit Story</a>
       `;
@@ -282,7 +265,7 @@ const Dashboard = {
   },
 
   _tombolHapus(recordId) {
-    if (this._dataAdaDiPenyimpananLokal(recordId)) {
+    if (this._dataAdaDiList(recordId)) {
       return `
       <a href="#" class="card-link text-decoration-none delete-story text-white btn-c" data-bs-toggle="modal" data-bs-target="#deleteModal" data-record-id="${recordId}">Hapus Story</a>
       `;
@@ -290,41 +273,13 @@ const Dashboard = {
     return '';
   },
 
-  _dataAdaDiPenyimpananLokal(recordId) {
-    const dataSimpanStoryJSON = localStorage.getItem('dataSimpanStory');
-    if (dataSimpanStoryJSON) {
-      const dataSimpanStory = JSON.parse(dataSimpanStoryJSON);
-
-      if (Array.isArray(dataSimpanStory)) {
-        return dataSimpanStory.some((listStory) => listStory.id === recordId);
-      }
-    }
-    return false;
+  _dataAdaDiList(recordId) {
+    return this._userListStory.some((listStory) => listStory.id === recordId);
   },
 
-  _hapusDataDariLocalStorage(recordId) {
-    const dataSimpanStoryJSON = localStorage.getItem('dataSimpanStory');
-    if (dataSimpanStoryJSON) {
-      const dataSimpanStory = JSON.parse(dataSimpanStoryJSON);
-      const newDataSimpanStory = dataSimpanStory.filter((listStory) => listStory.id !== recordId);
-      localStorage.setItem('dataSimpanStory', JSON.stringify(newDataSimpanStory));
-
-      this._initialData();
-    }
-  },
-
-  _simpanPerubahanDataDariLocalStorage(editedRecord) {
-    const dataSimpanStoryJSON = localStorage.getItem('dataSimpanStory');
-    if (dataSimpanStoryJSON) {
-      const dataSimpanStory = JSON.parse(dataSimpanStoryJSON);
-
-      const index = dataSimpanStory.findIndex((story) => story.id === editedRecord.id);
-      if (index !== -1) {
-        dataSimpanStory[index] = editedRecord;
-        localStorage.setItem('dataSimpanStory', JSON.stringify(dataSimpanStory));
-        this._initialData();
-      }
-    }
+  _hapusDataDariList(recordId) {
+    this._userListStory = this._userListStory.filter((listStory) => listStory.id !== recordId);
+    this._populateListStoryRecordToCard(this._userListStory);
   },
 
   _templateEmptyBodyTable() {
@@ -333,6 +288,29 @@ const Dashboard = {
     <p class="text-center">Belum ada story yang tersedia</p>
     </div>
     `;
+  },
+
+  _showSpinnerAndcardPlaceholder() {
+    const spinnersLoad = document.getElementById('spinnersLoad');
+    const cardPlaceholder1 = document.getElementById('cardPlaceholder1');
+    const cardPlaceholder2 = document.getElementById('cardPlaceholder2');
+    if (spinnersLoad && cardPlaceholder1 && cardPlaceholder2) {
+      spinnersLoad.removeAttribute('hidden');
+      cardPlaceholder1.removeAttribute('hidden');
+      cardPlaceholder2.removeAttribute('hidden');
+    }
+  },
+
+  _hideSpinnerAndcardPlaceholder() {
+    const spinnersLoad = document.getElementById('spinnersLoad');
+    const cardPlaceholder1 = document.getElementById('cardPlaceholder1');
+    const cardPlaceholder2 = document.getElementById('cardPlaceholder2');
+
+    if (spinnersLoad && cardPlaceholder1 && cardPlaceholder2) {
+      spinnersLoad.setAttribute('hidden', '');
+      cardPlaceholder1.setAttribute('hidden', '');
+      cardPlaceholder2.setAttribute('hidden', '');
+    }
   },
 };
 

@@ -5,15 +5,22 @@ import '../sass/main.scss';
 import './components/index';
 
 // Import javascript file as needed
-import * as bootstrap from 'bootstrap';
 import Dashboard from './pages/dashboard';
 import Add from './pages/story/add';
-import Login from './pages/story/login';
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
+import LupaAkun from './pages/auth/lupaakun';
+
+import './utils/firebase';
+import * as bootstrap from 'bootstrap';
 
 const routes = {
   '/': Dashboard,
   '/story/add.html': Add,
-  '/story/login.html': Login,
+
+  '/auth/login.html': Login,
+  '/auth/register.html': Register,
+  '/auth/lupaakun.html': LupaAkun,
 };
 
 const detectRoute = () => routes[window.location.pathname];

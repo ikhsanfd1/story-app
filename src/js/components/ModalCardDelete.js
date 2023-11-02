@@ -3,15 +3,17 @@ import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 import { msg, updateWhenLocaleChanges } from '@lit/localize';
 
 class ModalCardDelete extends LitWithoutShadowDom {
-  static properties = {
-    title: { type: String, reflect: true },
-    recordId: { type: String },
-  };
-
   constructor() {
     super();
     updateWhenLocaleChanges(this);
     this.recordId = '';
+  }
+
+  static get properties() {
+    return {
+      title: { type: String, reflect: true },
+      recordId: { type: String },
+    };
   }
 
   render() {

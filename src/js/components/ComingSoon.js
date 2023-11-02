@@ -23,12 +23,13 @@ class ComingSoon extends LitElement {
             text-align: center;
             margin-top: 80px;
             border-radius: 5px;
+            box-shadow: 2px 2px 2px #7986c7;
         }
         h1 {
           text-shadow: 2px 2px 2px black;
         }
     </style>
-    <h1>${msg(`segera hadir untuk halaman login`)}</h1> 
+    <h1>${msg(`maaf, untuk lupa akun sementara belum tersedia. Silahkan daftar ulang akun`)}</h1> 
     `;
   }
 }

@@ -6,18 +6,20 @@ import './form/LihatImageInput';
 import './form/ValidasiTextArea';
 
 class ModalCardEdit extends LitWithoutShadowDom {
-  static properties = {
-    title: { type: String, reflect: true },
-  };
-
   constructor() {
     super();
     updateWhenLocaleChanges(this);
   }
 
+  static get properties() {
+    return {
+      title: { type: String, reflect: true },
+    };
+  }
+
   render() {
     return html`
-      <div class="modal-dialog modal-xl text-purple pt-4">
+      <div class="modal-dialog modal-lg text-purple pt-4">
         <div class="modal-content bg-yellow">
           <form class="row g-2" id="editRecordForm" novalidate>
             <div class="modal-header">

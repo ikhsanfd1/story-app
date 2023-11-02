@@ -2,30 +2,32 @@ import { html, nothing } from 'lit';
 import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 
 class ButtonLink extends LitWithoutShadowDom {
-  static properties = {
-    to: {
-      type: String,
-      reflect: true,
-    },
-    content: {
-      type: String,
-      reflect: true,
-    },
-    icon: {
-      type: String,
-      reflect: true,
-    },
-    classes: {
-      type: String,
-      reflect: true,
-    },
-  };
-
   constructor() {
     super();
     this._checkAvailabilityProperty();
 
     this.classes = '';
+  }
+
+  static get properties() {
+    return {
+      to: {
+        type: String,
+        reflect: true,
+      },
+      content: {
+        type: String,
+        reflect: true,
+      },
+      icon: {
+        type: String,
+        reflect: true,
+      },
+      classes: {
+        type: String,
+        reflect: true,
+      },
+    };
   }
 
   _checkAvailabilityProperty() {

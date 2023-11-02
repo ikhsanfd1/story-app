@@ -3,13 +3,15 @@ import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 import { msg, updateWhenLocaleChanges } from '@lit/localize';
 
 class OffCanvasCustom extends LitWithoutShadowDom {
-  static properties = {
-    title: { type: String, reflect: true },
-  };
-
   constructor() {
     super();
     updateWhenLocaleChanges(this);
+  }
+
+  static get properties() {
+    return {
+      title: { type: String, reflect: true },
+    };
   }
 
   render() {
