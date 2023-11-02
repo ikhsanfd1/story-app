@@ -12,8 +12,8 @@ class NavLinks extends LitWithoutShadowDom {
       <ul class="navbar-nav d-flex align-items-center gap-3">
         <nav-link content="${msg(`Dasbor`)}" to="/"></nav-link>
         <nav-link content="${msg(`Buat Cerita`)}" to="/story/add.html"></nav-link>
-        <nav-link content="${msg(`Masuk`)}" to="/auth/login.html"></nav-link>
-        <nav-link-auth id="userLoggedMenu"></nav-link-auth>
+        <nav-link-auth class="d-none" id="userLoggedMenu"></nav-link-auth>
+        <nav-link content="${msg(`Masuk`)}" to="/auth/login.html" id="loginMenu"></nav-link>
       </ul>
     `;
   }

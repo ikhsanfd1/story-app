@@ -10,18 +10,9 @@ export const sourceLocale = `id`;
  * The other locale codes that this application is localized into. Sorted
  * lexicographically.
  */
-export const targetLocales = [
-  `en`,
-  `es`,
-  `fr`,
-];
+export const targetLocales = [`en`, `es`, `fr`];
 
 /**
  * All valid project locale codes. Sorted lexicographically.
  */
-export const allLocales = [
-  `en`,
-  `es`,
-  `fr`,
-  `id`,
-];
+export const allLocales = [`en`, `es`, `fr`, `id`];

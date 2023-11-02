@@ -17,25 +17,26 @@
             <div class="card text-purple">
               <header class="card-header text-center">Login</header>
               <div class="card-body">
-                <form class="form-validation" id="loginRecordForm">
+                <form class="form-validation" id="loginForm" novalidate>
                   <div class="mb-3">
                     <label for="validasiEmail" class="form-label">Email</label>
                     <input-with-validation
                       id="validasiEmail"
-                      type="text"
+                      type="email"
                       inputId="validasiEmail"
-                      invalidFeedbackMessage="Wajib diisi, tidak boleh kosong"
+                      invalidFeedbackMessage="Email tidak boleh kosong"
                       required
                     >
                     </input-with-validation>
                   </div>
                   <div class="mb-3">
                     <label for="validasiPassword" class="form-label">Password</label>
+
                     <input-with-validation
                       id="validasiPassword"
                       type="password"
                       inputId="validasiPassword"
-                      invalidFeedbackMessage="Wajib diisi, tidak boleh kosong"
+                      invalidFeedbackMessage="Password tidak boleh kosong"
                       required
                     >
                     </input-with-validation>
@@ -44,6 +45,13 @@
                     <button type="submit" class="btn btn-red text-white btn-c">Login</button>
                   </div>
                 </form>
+
+                <p id="errorMessage"></p>
+                <p id="successMessage"></p>
+
+                <div class="mt-4 text-center">
+                  <a href="/auth/lupaakun.html">Lupa akun?</a> atau
+                </div>
 
                 <div class="mt-4 text-center">
                   Belum punya akun? <a href="/auth/register.html">Daftar</a>

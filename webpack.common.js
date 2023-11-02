@@ -94,10 +94,25 @@ module.exports = {
       ...htmlWebpackPluginConfig,
     }),
 
+    // Auth Pages
     new HtmlWebpackPlugin({
       title: 'Login',
       filename: 'auth/login.html',
       template: path.resolve(__dirname, 'src/views/auth/login.html'),
+      ...htmlWebpackPluginConfig,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Register',
+      filename: 'auth/register.html',
+      template: path.resolve(__dirname, 'src/views/auth/register.html'),
+      ...htmlWebpackPluginConfig,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Lupa Akun',
+      filename: 'auth/lupaakun.html',
+      template: path.resolve(__dirname, 'src/views/auth/lupaakun.html'),
       ...htmlWebpackPluginConfig,
     }),
 

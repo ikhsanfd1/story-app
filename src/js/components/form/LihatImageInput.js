@@ -2,23 +2,24 @@ import { html, nothing } from 'lit';
 import LitWithoutShadowDom from '../base/LitWithoutShadowDom';
 
 class LihatImageInput extends LitWithoutShadowDom {
-  static properties = {
-    inputId: { type: String, reflect: true },
-    defaultImage: { type: String, reflect: true },
-    defaultImageAlt: { type: String, reflect: true },
-
-    validFeedbackMessage: { type: String, reflect: true },
-    invalidFeedbackMessage: { type: String, reflect: true },
-
-    required: { type: Boolean, reflect: true },
-  };
-
   constructor() {
     super();
 
     this.type = 'text';
     this.defaultImage = '';
     this.defaultImageAlt = '';
+  }
+  static get properties() {
+    return {
+      inputId: { type: String, reflect: true },
+      defaultImage: { type: String, reflect: true },
+      defaultImageAlt: { type: String, reflect: true },
+
+      validFeedbackMessage: { type: String, reflect: true },
+      invalidFeedbackMessage: { type: String, reflect: true },
+
+      required: { type: Boolean, reflect: true },
+    };
   }
 
   render() {
@@ -89,6 +90,8 @@ class LihatImageInput extends LitWithoutShadowDom {
           background-repeat: no-repeat;
           background-position: center;
           background-size: contain;
+          width: 100%;
+          height: 200px;
         "
         id="${this.inputId || nothing}ImgChange"
       ></div>
@@ -100,6 +103,7 @@ class LihatImageInput extends LitWithoutShadowDom {
           src="${this.defaultImage}"
           alt="${this.defaultImageAlt}"
           id="${this.inputId || nothing}Img"
+          style="width: 100%; height: 200px;"
         />
         ${imgChangeTemplate}
       `;

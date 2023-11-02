@@ -2,14 +2,16 @@ import { html } from 'lit';
 import LitWithoutShadowDom from './base/LitWithoutShadowDom';
 
 class NavLink extends LitWithoutShadowDom {
-  static properties = {
-    content: { type: String, reflect: true },
-    to: { type: String, reflect: true },
-  };
-
   constructor() {
     super();
     this._checkAvailabilityProperty();
+  }
+
+  static get properties() {
+    return {
+      content: { type: String, reflect: true },
+      to: { type: String, reflect: true },
+    };
   }
 
   _checkAvailabilityProperty() {

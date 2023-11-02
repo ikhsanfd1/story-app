@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %> | Story App</title>
+  </head>
+  <body>
+    <header>
+      <nav-app brandName="<%= brandName %>"></nav-app>
+    </header>
+
+    <main class="bg-yellow">
+      <section class="container pt-5">
+        <div class="row justify-content-center py-5">
+          <article class="col-md-6">
+            <coming-soon></coming-soon>
+            <div class="mt-4 text-center text-purple">
+              Belum punya akun? <a href="/auth/register.html">Daftar</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="main-footer bg-purple">
+        <div class="container px-3 py-4">
+          <footer-app></footer-app>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
