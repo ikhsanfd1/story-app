@@ -1,6 +1,6 @@
 {
   "ignorePatterns": ["node_modules/", "dist/", "build/", "webpack*.js", "generated/", "*.json"],
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module",
